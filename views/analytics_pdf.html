@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Influencer Report</title>
+        <link href="http://localhost:3000//css/main.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet"type="text/css" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" >
+         <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Tangerine">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" >
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div class="main_wrap">
+            <!--Top Section-->
+            <div class="section_one">
+                <div class="inner_wrap">
+                    <div class="display-flex pT70">
+                        <div class="w-50 year_heading">
+                            <p>2020</p>
+                            <span class="thik_line"></span>
+                        </div>
+                        <div class="w-50">
+                            <p style="text-align: right; color: rgb(204,204,204); letter-spacing: 1px">Powered by CreatorTag</p>
+                        </div>
+                    </div>
+                    <div class="mT200">
+                        <p style="color: rgb(47,155,210); letter-spacing: 2px; font-size: 84px; font-weight: 900">{{profileData.full_name}}</p>
+                    </div>
+                    <div class="display-flex mT200">
+                        <div class="w-50 user_intro">
+                            <h2>Introduction:</h2>
+                            <!-- {{#checkEqaul profileData.city profileData.city}}
+                                {{profileData.city}} is equal to {{profileData.city}}
+                            {{else}}
+                                {{profileData.city}} is not equal to {{profileData.city}}
+                            {{/checkEqaul}} -->
+                            <p>
+                                {{ profileData.city }}
+                            </p>
+                            <p>
+                                {{#each profileData.interests}}
+                                    {{this}}
+                                    {{#checkArray @index ../profileData.interests.length}}
+                                       ,
+                                    {{/checkArray}}
+                                {{/each }}
+                            </p>
+                            <p>
+                                {{#profileData.language}}
+                                    {{this}}
+                                    {{#checkArray @index ../profileData.language.length}}
+                                       ,
+                                    {{/checkArray}}
+                                {{/profileData.language}}
+                            </p>
+                        </div>
+                        <div class="w-50 user_email text-right pT70">
+                            <span class="thik_line" style="display: inline-block;"></span>
+                            <p>
+                                {{profileData.email}}
+                            </p>
+                            <p>
+                                {{#checkArrayEmpty profileData.twitter}}
+                                    <i class="fa fa-twitter"></i>
+                                {{/checkArrayEmpty}}
+
+                                {{#checkArrayEmpty profileData.instagram}}
+                                    <i class="fa fa-instagram"></i>
+                                {{/checkArrayEmpty}}
+
+                                {{#checkArrayEmpty profileData.facebook}}
+                                    <i class="fa fa-facebook"></i>
+                                {{/checkArrayEmpty}}
+
+                                {{#checkArrayEmpty profileData.youtube}}
+                                    <i class="fa fa-youtube-play"></i>
+                                {{/checkArrayEmpty}}
+
+                                {{#checkArrayEmpty profileData.linkedin}}
+                                    <i class="fa fa-linkedin"></i>
+                                {{/checkArrayEmpty}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Top Section-->
+            <div style="page-break-after: always;"></div>
+            <!--about me-->
+            <div class="section_two" style="border: 1px solid rgb(238,238,238); overflow: hidden;">
+                <div class="inner_wrap">
+                    <div class="position-relative">
+                        <div class="display-flex">
+                            <div class="w-70">
+                                <h1 class="main_heading pT40">About Me</h1>
+                                <span class="thik_line" style="background-color: rgb(49,155,206); width: 90px; height: 12px"></span>
+                            </div>
+                            <div class="w-30">
+                                <div class="circle_image">
+                                    {{#if profileData.profile_image}}
+                                        <img src="{{profileData.profile_image}}" alt="user">
+                                    {{else}}
+                                        <img src="http://localhost:3000/images/user2.webp">
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="about_detail">
+                            <li>
+                                <i class="fa fa-star"></i>
+                                Travel
+                            </li>
+                            <li>
+                                 <i class="fa fa-heart"></i>
+                                Influencer:72%
+                            </li>
+                            <li>
+                                <span>3.7 k</span>
+                                Followers
+                            </li>
+                            <li>
+                                <i class="fa fa-map-marker"></i>
+                                {{#if profileData.country}}
+                                    {{profileData.country}}
+                                {{else}}
+                                   <span>N/A</span>
+                                {{/if}}
+                            </li>
+                        </ul>
+
+                        {{#each profileData.twitter}}
+                            <div class="platform_details">
+                                <div class="w-10">
+                                    <i class="fa fa-twitter"></i>
+                                </div>
+                                <div class="w-60">
+                                    <p>Twitter <span>@{{this.Elv_social}}</span></p>
+                                    <span class="display-block">Follower: {{this.followers_count}}</span>
+                                    <span class="display-block">Like per post: 8.46k </span>
+                                    <span class="display-block">Comments per post: 762</span>
+                                </div>
+                                <div class="w-30">
+                                    <div class="circle_image">
+                                        {{#if this.profile_image_url}}
+                                            <img src="{{this.profile_image_url}}" alt="user">
+                                        {{else}}
+                                            <img src="http://localhost:3000/images/user2.webp">
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+
+                        {{#each profileData.instagram}}
+                            <div class="platform_details">
+                                <div class="w-10">
+                                    <i class="fa fa-instagram"></i>
+                                </div>
+                                <div class="w-60">
+                                    <p>Instagram <span>@{{this.Elv_social}}</span></p>
+                                    <span class="display-block">Follower: {{this.followers_count}}</span>
+                                    <span class="display-block">Like per post: 8.46k </span>
+                                    <span class="display-block">Comments per post: 762</span>
+                                </div>
+                                <div class="w-30">
+                                    <div class="circle_image">
+                                        {{#if this.profile_image_url}}
+                                            <img src="{{{this.profile_image_url}}}" alt="user">
+                                        {{else}}
+                                            <img src="http://localhost:3000/images/user2.webp">
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                        {{#each profileData.facebook}}
+                        <div class="platform_details">
+                            <div class="w-10">
+                                <i class="fa fa-facebook"></i>
+                            </div>
+                            <div class="w-60">
+                                <p>Facebook <span>@{{this.Elv_social}}</span></p>
+                                <span class="display-block">Follower: {{this.followers_count}}</span>
+                                <span class="display-block">Like per post: 8.46k</span>
+                                <span class="display-block">Comments per post: 762</span>
+                            </div>
+                            <div class="w-30">
+                                <div class="circle_image">
+                                    {{#if this.profile_image_url}}
+                                            <img src="{{{this.profile_image_url}}}" alt="user">
+                                    {{else}}
+                                        <img src="http://localhost:3000/images/user2.webp">
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{#each profileData.youtube}}
+                        <div class="platform_details">
+                            <div class="w-10">
+                                <i class="fa fa-youtube-play"></i>
+                            </div>
+                            <div class="w-60">
+                                <p>Youtube <span>@{{this.Elv_social}}</span></p>
+                                <span class="display-block">Follower: {{this.followers_count}}</span>
+                                <span class="display-block">Like per post: 8.46k</span>
+                                <span class="display-block">Comments per post: 762</span>
+                            </div>
+                            <div class="w-30">
+                                <div class="circle_image">
+                                {{#if this.profile_image_url}}
+                                    <img src="{{{this.profile_image_url}}}" alt="user">
+                                {{else}}
+                                    <img src="http://localhost:3000/images/user2.webp">
+                                {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        {{#each profileData.linkedin}}
+                        <div class="platform_details">
+                            <div class="w-10">
+                                <i class="fa fa-linkedin"></i>
+                            </div>
+                            <div class="w-60">
+                                <p>Linkedin <span>@{{this.Elv_social}}</span></p>
+                                <span class="display-block">Follower: {{this.followers_count}}</span>
+                                <span class="display-block">Like per post: 8.46k</span>
+                                <span class="display-block">Comments per post: 762</span>
+                            </div>
+                            <div class="w-30">
+                                <div class="circle_image">
+                                    {{#if this.profile_image_url}}
+                                            <img src="{{{this.profile_image_url}}}" alt="user">
+                                    {{else}}
+                                        <img src="http://localhost:3000/images/user2.webp">
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+            <!--about me-->
+            <div style="page-break-after: always;"></div>
+            <!--portfolio-->
+            <div class="section_two" style="border: 1px solid rgb(238,238,238);">
+                <div class="inner_wrap">
+                    <div class="w-100">
+                        <h1 class="main_heading pT40">Portfolio</h1>
+                        <span class="thik_line" style="background-color: rgb(49,155,206); width: 110px; height: 12px"></span>
+                    </div>
+                    <ul class="portfolio_brand">
+                        {{#each profileData.brandData}}
+                        <li>
+                            <p class="text-16">
+
+                                {{#if this.fullname}}
+                                    {{this.fullname}}
+                                {{else}}
+                                    {{#if this.name}}
+                                        {{this.name}}
+                                    {{else}}
+                                        {{this.username}}
+                                    {{/if}}
+                                {{/if}}
+                            </p>
+                            {{#if this.profilePicUrl}}
+                                <img src="{{{this.profilePicUrl}}}" alt="user">
+                            {{else}}
+                                <img src="http://localhost:3000/images/user2.webp">
+                            {{/if}}
+                            <div class="display-flex">
+                                <div class="w-70">
+                                    <p class="text-14">
+                                        <span class="mR15"><i class="fa fa-heart-o"></i> 12.5k</span>
+                                        <span><i class="fa fa-comment-o"></i> 2.8k</span>
+                                    </p>
+                                </div>
+                                <div class="w-30 text-right">
+                                    <i class="fa fa-instagram"></i>
+                                </div>
+                            </div>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--portfolio-->
+            <div style="page-break-after: always;"></div>
+            <!--top content-->
+            <div class="section_two" style="border: 1px solid rgb(238,238,238);">
+                <div class="inner_wrap">
+                    <div class="w-100">
+                        <h1 class="main_heading pT40">Top Content</h1>
+                        <span class="thik_line" style="background-color: rgb(49,155,206); margin-top: 10px; width: 90px; height: 12px"></span>
+                    </div>
+                    <ul class="portfolio_brand">
+                        {{#each profileData.topContentData}}
+                            {{#if this.image_body}}
+                        <li>
+                            <img src="{{{ this.image_body }}}">
+                            <div class="display-flex">
+                                <div class="w-70">
+                                    <p class="text-14">
+                                        <span class="mR15"><i class="fa fa-heart-o"></i>{{this.likes_count}}</span>
+                                        <span><i class="fa fa-comment-o"></i>{{this.comment_count}}</span>
+                                    </p>
+                                </div>
+                                <div class="w-30 text-right">
+                                    <i class="fa fa-{{getIcon this.authorInfo.authorType}}"></i>
+                                </div>
+                            </div>
+                        </li>
+                            {{/if}}
+                        {{/each}}
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!--top content-->
+            <div style="page-break-after: always;"></div>
+            <!--My space-->
+            <div class="section_two" style="border: 1px solid rgb(238,238,238); overflow: hidden;">
+                <div class="inner_wrap">
+                    <div class="position-relative">
+                        <div class="display-flex">
+                            <div class="w-70">
+                                <h1 class="main_heading pT40">My Space</h1>
+                                <span class="thik_line" style="background-color: rgb(49,155,206); width: 90px; height: 12px"></span>
+                            </div>
+                            <div class="w-30">
+                                <div class="circle_image">
+                                    {{#if profileData.profile_image}}
+                                        <img src="{{profileData.profile_image}}" alt="user">
+                                    {{else}}
+                                        <img src="http://localhost:3000/images/user2.webp">
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="about_detail">
+                            <li>
+                                <span>3.7 k</span>
+                                Followers
+                            </li>
+                            <li>
+                                <span>67%</span>
+                                Men
+                            </li>
+                            <li>
+                                <span>22</span>
+                                Avg. Age
+                            </li>
+                            <li>
+                                <span>$46.31</span>
+                                Avg. Income
+                            </li>
+                        </ul>
+                        <ul class="age_groups">
+                            <li>
+                                <p>Age Groups</p>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td class="text-left">13-18</td>
+                                        <td class="text-right">28%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">19-26</td>
+                                        <td class="text-right">46%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">27-32</td>
+                                        <td class="text-right">21%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">33-48</td>
+                                        <td class="text-right">5%</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <p>Countries</p>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td class="text-left">USA</td>
+                                        <td class="text-right">28%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">India</td>
+                                        <td class="text-right">46%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">China</td>
+                                        <td class="text-right">21%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Japan</td>
+                                        <td class="text-right">5%</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            <li>
+                                <p>Interests</p>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td class="text-left">Travel</td>
+                                        <td class="text-right">28%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Fashion</td>
+                                        <td class="text-right">46%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Music</td>
+                                        <td class="text-right">21%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Party</td>
+                                        <td class="text-right">5%</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            {{#if profileData.mentionData}}
+                            <li>
+                                <p>Mentions</p>
+                                <table cellpadding="0" cellspacing="0" border="0">
+                                    <tr>
+                                        <td class="text-left">Postive</td>
+                                        <td class="text-right">{{fixedNumber profileData.mentionData.POSITIVE}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Neutral</td>
+                                        <td class="text-right">{{fixedNumber profileData.mentionData.NEUTRAL}}%</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left">Negative</td>
+                                        <td class="text-right">{{fixedNumber profileData.mentionData.NEGATIVE}}%</td>
+                                    </tr>
+                                </table>
+                            </li>
+                            {{/if}}
+                        </ul>
+                        <div class="clearfix"></div>
+                        <ul class="most_like">
+                            {{#if profileData.topLikePost}}
+                            <li>
+                                <div class="platform_details">
+                                    <div class="w-60">
+                                        <p>Most Liked Post</p>
+                                        <span class="display-block">Likes on post: {{profileData.topLikePost.likes_count}}</span>
+                                        <span class="display-block">Comments on post: {{profileData.topLikePost.comment_count}}</span>
+                                        <span class="display-block"><i class="fa fa-instagram text-24" style="color: rgb(187,187,187);"></i></span>
+                                    </div>
+                                    <div class="w-30">
+                                        <div class="circle_image">
+                                            {{#if profileData.topLikePost.image_body }}
+                                                <img src="{{{ profileData.topLikePost.image_body }}}" alt="user">
+                                            {{else}}
+                                                <img src="http://localhost:3000/images/user2.webp">
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/if}}
+                            {{#if profileData.topCommentPost}}
+                            <li>
+                                <div class="platform_details">
+                                    <div class="w-60">
+                                        <p>Most Commented Post</p>
+                                        <span class="display-block">Likes on post: {{profileData.topCommentPost.likes_count}}</span>
+                                        <span class="display-block">Comments on post: {{profileData.topCommentPost.comment_count}}</span>
+                                        <span class="display-block"><i class="fa fa-instagram text-24" style="color: rgb(187,187,187);"></i></span>
+                                    </div>
+                                    <div class="w-30">
+                                        <div class="circle_image">
+                                            {{#if profileData.topCommentPost.image_body }}
+                                                <img src="{{{ profileData.topCommentPost.image_body }}}" alt="user">
+                                            {{else}}
+                                                <img src="http://localhost:3000/images/user2.webp">
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {{/if}}
+                        </ul>
+                        <ul class="age_groups">
+                            <li>
+                                <p>Follower Growth</p>
+                            </li>
+                            <li>
+                                <p>Engagement Rate</p>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+            <!--My space-->
+        </div>
+    </body>
+</html>

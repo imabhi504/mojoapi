@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Invoice</title>
+        <link href="http://localhost:3000//css/invoice.css" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css"href="https://fonts.googleapis.com/css?family=Tangerine">
+    </head>
+    <body>
+        <div class="main_wrap">
+    		<div class="inner_wrap">
+                <div class="main_heading">
+                    <p>Invoice</p>
+                    <span class="thik_line"></span>
+                </div>
+                <div class="w-100 mT50 mB30">
+                    <div class="w-55 pull-left">
+                        <p class="color_323232">
+                            {{bindData.full_name}}
+                        </p>
+                        <p class="color_666766">{{bindData.email}}</p>
+                        <p class="color_666766">Phone No. :
+                            <span>
+                                {{bindData.isd_code}}
+                                {{#if bindData.isd_code}}
+                                    -
+                                {{else}}
+                                {{/if}}
+                                {{bindData.mobile}}
+                            </span>
+                        </p>
+                        <p class="color_666766">Address of influencer : <span>
+                            {{#if bindData.address}}
+                                {{bindData.address}}
+                            {{else}}
+                                N/A
+                            {{/if}}
+                        </span></p>
+                    </div>
+                    <div class="w-45 pull-right">
+                        <p class="color_323232">Invoice Number:
+                            <span>
+                                {{bindData.projectData.payment_details.invoice_number}}
+                            </span>
+                        </p>
+                        <p class="color_323232">Due Date:
+                            <span>
+                                {{dateFormat bindData.projectData.payment_details.invoice_date}}
+                            </span>
+                        </p>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="w-100 mB50">
+                    <p class="color_323232">Bill To:</p>
+                    <p class="color_666766">
+                        {{bindData.projectData.brand_name}}
+                        <br>
+                        {{contactCheck bindData.projectData.project_contacts  "2"}}
+                    </p>
+                </div>
+                <div class="w-100">
+                    <table cellpadding="0" cellspacing="0" border="0">
+                        <tr>
+                            <td class="table_td">Description</td>
+                            <!-- <td class="table_td">Date</td> -->
+                            <td class="table_td">Amount</td>
+                        </tr>
+                        {{#each bindData.sortedPlatfromData}}
+                        <tr>
+                            <td class="table_td_child">{{this.postCount}} {{this.platform}} Post</td>
+                            <!-- <td class="table_td_child">22, April, 2020</td> -->
+                            {{#ifTotal @index}}
+                            <td class="table_td_child">56000
+                            {{/ifTotal}}
+                            </td>
+                        </tr>
+                        {{/each}}
+                        <!--State GST-->
+                            {{#if bindData.getTaxData.stateTax}}
+                            <tr>
+                                <td class="table_td_child table_td_child2">Add : CGST@ 9%</td>
+                                <td class="table_td_child table_td_child3">
+                                    {{ bindData.getTaxData.CGST }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_td_child table_td_child2">Add : SGST@ 9%</td>
+                                <td class="table_td_child table_td_child3">
+                                    {{ bindData.getTaxData.SGST }}
+                                </td>
+                            </tr>
+                            {{/if}}
+                        <!--State GST-->
+                        <!--Foreign GST-->
+                        {{#if bindData.getTaxData.otherTax}}
+                            <tr>
+                                <td class="table_td_child table_td_child2">Add : IGST@ 18%</td>
+                                <td class="table_td_child table_td_child3">{{ bindData.getTaxData.IGST }}</td>
+                            </tr>
+                        {{/if}}
+                        <!--Foreign GST-->
+                    </table>
+                    <!--Non GST-->
+                     <table cellpadding="0" cellspacing="0" border="0" style="margin-top:30px;">
+                        <tr>
+                            <td class="table_td table_td_child2 mT20">Total:</td>
+                            <td class="table_td table_td_child3 mT20">
+                                {{ bindData.getTaxData.total }}
+                             </td>
+                        </tr>
+                    </table>
+                    <!--Non GST-->
+
+                     <!--State GST-->
+                     <!-- <table cellpadding="0" cellspacing="0" border="0" style="border-top: 2px solid rgb(241,241,241); margin-top:10px; padding-top: 10px;">
+                        <tr>
+                            <td class="table_td_child table_td_child2">Add : CGST@ 9%</td>
+                            <td class="table_td_child table_td_child3">5,000</td>
+                        </tr>
+                        <tr>
+                            <td class="table_td_child table_td_child2">Add : SGST@ 9%</td>
+                            <td class="table_td_child table_td_child3">5,000</td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" style="margin-top:30px;">
+                        <tr>
+                            <td class="table_td table_td_child2 mT20">Total:</td>
+                            <td class="table_td table_td_child3 mT20">5,000</td>
+                        </tr>
+                    </table> -->
+                    <!--State GST-->
+                    <!--Foreign GST-->
+                    <!-- <table 
+                        cellpadding="0" 
+                        cellspacing="0" 
+                        border="0" 
+                        style="border-top: 2px solid rgb(241,241,241); margin-top:10px; padding-top: 10px;"
+                    >
+                        <tr>
+                            <td class="table_td_child table_td_child2">Add : IGST@ 18%</td>
+                            <td class="table_td_child table_td_child3">5,000</td>
+                        </tr>
+                    </table>
+                    <table cellpadding="0" cellspacing="0" border="0" style="margin-top:30px;">
+                        <tr>
+                            <td class="table_td table_td_child2 mT20">Total:</td>
+                            <td class="table_td table_td_child3 mT20">5,000</td>
+                        </tr>
+                    </table> -->
+                    
+                    <!--Foreign GST-->
+
+                    <div class="w-100 mT80 mB50">
+                        <p class="color_323232">Bank Details:</p>
+                        <p class="color_666766">Payee Name :
+                            <span>{{contactCheck bindData.projectData.project_contacts  "3"}}</span>
+                        </p>
+                        <p class="color_666766">Bank Name & Branch Address : <span>A 140, Block - B, Gurgaon.</span></p>
+                        {{#if bindData.bankAccount.ifsc_code}}
+                            <p class="color_666766">IFSC :
+                                <span>{{bindData.bankAccount.ifsc_code}}</span>
+                            </p>
+                        {{/if}}
+                        {{#if bindData.bankAccount.swift_code}}
+                            <p class="color_666766">Swift Code (For Foreign Transactions):
+                                <span>
+                                        {{bindData.bankAccount.swift_code}}
+                                </span>
+                            </p>
+                        {{/if}}
+                        <p class="color_666766">PAN :
+                            <span>{{bindData.projectData.payment_details.pan_number}}</span>
+                        </p>
+                        <!-- <p class="color_666766 mT80">This is a computer genrated invoice. No signature required <span>(Issued on 27th april 6:30PM)</span></p> -->
+                        <p class="color_666766 mT80">This is a computer genrated invoice. No signature required <span>( {{dateFormat bindData.projectData.payment_details.invoice_date}})</span></p>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

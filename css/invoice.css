@@ -1,0 +1,17 @@
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}:after,:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}a,body,button,h1,h2,h3,h4,h5,h6,input,ol,ol li,p,select,span,table,td,textarea,ul,ul li,label,div{margin:0;padding:0;font-family:'Muli', sans-serif; outline: 0px !important; word-break: break-word !important;}ul{list-style:none;list-style-image:none}ul li{list-style:none;list-style-image:none}a{outline:0;-webkit-font-smoothing:antialiased}button,input,select,textarea{outline:0;box-shadow:none}.w-45{width:45%}.w-55{width:55%}.w-100{width:100%}.mT10{margin-top:10px}.mT15{margin-top:15px}.mT20{margin-top:20px}.mT25{margin-top:25px}.mT30{margin-top:30px}.mT50{margin-top:50px}.mT80{margin-top:80px}.mT100{margin-top:100px}.mB5{margin-bottom:5px}.mB10{margin-bottom:10px}.mB15{margin-bottom:15px}.mB20{margin-bottom:20px}.mB30{margin-bottom:30px}.mB50{margin-bottom:50px}.mB100{margin-bottom:100px}.pull-left{float:left;}.pull-right{float: right;}.clearfix{clear: both;}
+
+.main_wrap{ width: 800px; margin: 0px auto; padding: 0px; border: 1px solid rgb(238,238,238);}
+.inner_wrap{ width: 750px; margin: 0px auto; padding: 0px;}
+
+.main_heading{ font-size: 80px; font-weight: 700; margin:60px 0px 50px; color: rgb(51,155,214); text-align: left; margin-bottom: 10px; font-family: 'Muli', sans-serif !important}
+.thik_line{background-color: rgb(51,155,214); width: 85px; height: 14px; display: block;}
+.color_323232{ color: rgb(50,50,50); font-size: 22px; line-height: 40px; margin: 0px; padding: 0px; font-weight: 600; }
+.color_666766{ color: rgb(102,103,102); font-size: 20px; line-height: 28px; }
+.table_td{ background-color: rgb(241,241,241); padding: 10px 20px; font-size: 22px; font-weight: 600}
+.table_td:nth-child(1n){ width: 40% }
+.table_td:nth-child(2n){ width: 30% }
+.table_td:nth-child(3n){ width: 30% }
+table{ width: 100%; color: rgb(50,50,50);}
+.table_td_child{padding: 10px 20px; width: 33.33%; font-size: 20px; color: rgb(102,103,102);}
+.table_td_child2{ width: 73.2% !important; }
+.table_td_child3{ width: 26.8% !important; }
