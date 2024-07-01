@@ -1,0 +1,200 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "User Services API",
+        "description": "Node.js User Services API",
+        "license": {
+            "name": "Eleve Media",
+            "url": "https://eleve.co"
+        }
+    },
+    "host": "localhost:3000",
+    "tags": [{
+        "name": "Users",
+        "description": "API for users in the system"
+    }],
+    "basePath": "/api/",
+
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "User login"
+                ],
+                "description": "User login into the system",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User email and Password is required",
+                    "schema": {
+                        "$ref": "#/definitions/login"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User login response",
+                        "schema": {
+                            "$ref": "#/definitions/login-resp"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/logout": {
+            "post": {
+                "tags": [
+                    "User logout"
+                ],
+                "description": "User logout",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User id required",
+                    "schema": {
+                        "$ref": "#/definitions/logout"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User logout response",
+                        "schema": {
+                            "$ref": "#/definitions/logout-resp"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/user/bank": {
+            "get": {
+                "tags": [
+                    "User Bank Details"
+                ],
+                "description": "Get user bank details",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "User id required",
+                    "schema": {
+                        "$ref": "#/definitions/bank"
+                    }
+                }],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User bank response",
+                        "schema": {
+                            "$ref": "#/definitions/bank-resp"
+                        }
+                    }
+                }
+            }
+        }
+
+    },
+    "definitions": {
+        "login": {
+            "required": [
+                "email",
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "login-resp": {
+            "type": "object",
+            "properties": {
+                "responseCode": { "type": "integer" },
+                "responseMessage": { "type": "string" },
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "_id": { "type": "string" },
+                        "first_name": { "type": "string" },
+                        "email": { "type": "string" },
+                        "mobile": { "type": "integer" },
+                        "__v": { "type": "integer" }
+                    }
+                },
+                "token": { "type": "string" }
+            }
+
+        },
+        "logout": {
+            "required": [
+                "user_id"
+            ],
+            "properties": {
+                "user_id": {
+                    "type": "string",
+                    "uniqueItems": true
+                }
+            }
+        },
+        "logout-resp": {
+            "type": "object",
+            "properties": {
+                "responseCode": { "type": "integer" },
+                "responseMessage": { "type": "string" },
+                "token": { "type": "string" }
+            }
+
+        },
+        "bank": {
+            "required": [
+                "user_id"
+            ],
+            "properties": {
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "bank-resp": {
+            "type": "object",
+            "properties": {
+                "responseCode": { "type": "integer" },
+                "responseMessage": { "type": "string" },
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "_id": { "type": "string" },
+                        "first_name": { "type": "string" },
+                        "email": { "type": "string" },
+                        "mobile": { "type": "integer" },
+                        "__v": { "type": "integer" }
+                    }
+                },
+                "token": { "type": "string" }
+            }
+
+        }
+    }
+}
